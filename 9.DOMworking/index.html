@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Validation</title>
+</head>
+<body>
+  <h1>Form Validation</h1>
+  <form id="myForm" onsubmit="validateForm(event)">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required>
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" required>
+    <br>
+    <label for="confirm-password">Confirm Password:</label>
+    <input type="password" id="confirm-password" required>
+    <br>
+    <input type="submit" value="Submit">
+  </form>
+  <div id="error-messages"></div>
+
+  <script>
+    function validateForm(event) {
+      event.preventDefault();
+
+      const errorMessages = document.getElementById('error-messages');
+      errorMessages.innerHTML = '';
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+
+      const nameRegex = /^[a-zA-Z]+$/;
+      const emailRegex = /^\S+@\S+\.\S+$/;
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+
+      if (name.trim() === '' || !nameRegex.test(name)) {
+        errorMessages.innerHTML += '<p class="error">Name should not be empty and should contain only letters.</p>';
+      }
+
+      if (!emailRegex.test(email)) {
+        errorMessages.innerHTML += '<p class="error">Please enter a valid email address.</p>';
+      }
+
+      if (password.length < 8 || !passwordRegex.test(password)) {
+        errorMessages.innerHTML += '<p class="error">Password should have a minimum length of 8 characters and contain at least one uppercase letter, one lowercase letter, and one digit.</p>';
+      }
+
+      if (password !== confirmPassword) {
+        errorMessages.innerHTML += '<p class="error">Confirm Password should match the Password field.</p>';
+      }
+
+      if (errorMessages.innerHTML === '') {
+        document.getElementById('myForm').submit();
+      }
+    }
+  </script>
+</body>
+</html>

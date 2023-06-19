@@ -1,0 +1,16 @@
+{
+  "name": "ostad-next-m3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dataObject.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon 4.windowObject.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
